@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -32,9 +33,9 @@ namespace FileDigest
 			return hex;
 		}
 
-		private static string BytesToHex(byte[] bytes)
+		private static string BytesToHex(ICollection<byte> bytes)
 		{
-			StringBuilder sb = new StringBuilder(bytes.Length * 2);
+			StringBuilder sb = new StringBuilder(bytes.Count * 2);
 			foreach (byte b in bytes)
 				sb.AppendFormat("{0:x2}", b);
 			string hex = sb.ToString();

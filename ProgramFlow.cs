@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using System.Security.Cryptography;
 
@@ -12,14 +13,14 @@ namespace FileDigest
 		private readonly HashAlgorithm _algorithm;
 		private readonly TextWriter _output;
 
-		public ProgramFlow(string[] args, TextWriter output, HashAlgorithm algorithm)
+		public ProgramFlow(IList<string> args, TextWriter output, HashAlgorithm algorithm)
 		{
-			_args = args.Length;
+			_args = args.Count;
 
-			if (args.Length > 0)
+			if (args.Count > 0)
 				_path = args[0];
 
-			if (args.Length > 1)
+			if (args.Count > 1)
 				_digest = args[1];
 
 			_algorithm = algorithm;
@@ -32,7 +33,7 @@ namespace FileDigest
 			{
 				if (File.Exists(_path))
 				{
-					var checker = new FileDigestChecker(_path, new SHA1Cng());
+					var checker = new FileDigestChecker(_path, _algorithm);
 					string message = _args == 1 ? checker.Generate() : checker.Check(_digest) ? "Checksums match." : "Checksums do not match.";
 					_output.WriteLine(message);
 				}
