@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using FileDigest;
 
-namespace sha2
+namespace sha256
 {
 	internal static class Program
 	{

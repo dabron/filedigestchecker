@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{FC71966E-9D74-43C4-BE9E-0EE4BE7EECF2}</ProjectGuid>
+    <ProjectGuid>{FFF94D6F-2E94-4274-83A3-496DC4B11E06}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>sha2</RootNamespace>
-    <AssemblyName>sha2</AssemblyName>
+    <RootNamespace>sha512</RootNamespace>
+    <AssemblyName>sha512</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
