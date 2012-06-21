@@ -4,12 +4,12 @@ using FileDigest;
 
 namespace md5
 {
-	internal class Program
+	internal static class Program
 	{
-		private static void Main(string[] args)
+		private static int Main(string[] args)
 		{
 			var flow = new ProgramFlow(args, Console.Out, new MD5Cng());
-			flow.Run();
+			return flow.Run();
 		}
 	}
 }

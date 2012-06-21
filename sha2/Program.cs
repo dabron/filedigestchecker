@@ -2,13 +2,13 @@
 using System.Security.Cryptography;
 using FileDigest;
 
-namespace sha1
+namespace sha2
 {
 	internal static class Program
 	{
 		private static int Main(string[] args)
 		{
-			var flow = new ProgramFlow(args, Console.Out, new SHA1Cng());
+			var flow = new ProgramFlow(args, Console.Out, new SHA256Cng());
 			return flow.Run();
 		}
 	}

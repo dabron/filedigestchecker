@@ -27,27 +27,54 @@ namespace FileDigest
 			_output = output;
 		}
 
-		public void Run()
+		public int Run()
 		{
-			if (_args > 0 && _args <= 2)
+			int ret = 0;
+
+			if (_args == 1 || _args == 2)
 			{
 				if (File.Exists(_path))
 				{
 					var checker = new FileDigestChecker(_path, _algorithm);
-					string message = _args == 1 ? checker.Generate() : checker.Check(_digest) ? "Checksums match." : "Checksums do not match.";
+					string message;
+
+					if (_args == 1)
+					{
+						message = checker.Generate();
+					}
+					else
+					{
+						if (checker.Check(_digest))
+						{
+							message = "Checksums match.";
+						}
+						else
+						{
+							message = "Checksums do not match.";
+							ret = 1;
+						}
+					}
+
 					_output.WriteLine(message);
 				}
 				else
 				{
 					_output.WriteLine("File '{0}' not found.", _path);
+					ret = -1;
 				}
 			}
 			else
 			{
 				if (_args > 2)
+				{
 					_output.WriteLine("Invalid number of arguments.");
+					ret = -2;
+				}
+
 				_output.WriteLine("Correct usage: {0} <filename> [<digest>]", Assembly.GetExecutingAssembly().GetName().Name);
 			}
+
+			return ret;
 		}
 	}
 }
