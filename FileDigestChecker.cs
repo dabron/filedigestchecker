@@ -21,7 +21,7 @@ namespace FileDigest
 			bool match = false;
 			string generated = Generate();
 
-			if (digest == generated)
+			if (digest.ToLower() == generated)
 			{
 				match = true;
 			}
